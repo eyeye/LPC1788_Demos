@@ -26,22 +26,22 @@ struct FIFO
 
 
 #define FIFO_DEFINE(name, size) \
-                uint8_t name##buffer[size];\
-                struct FIFO name = \
+                static uint8_t name##_buffer[size];\
+                static struct FIFO name = \
                 {\
-                    .read_idx = 0,\
-                    .write_idx = 0,\
-                    .buffer = name##buffer,\
-                    .size = size \
-                }
+                    0,\
+                    0,\
+                    name##_buffer,\
+                    size, \
+                };\
 
 
 uint32_t FIFO_Put(struct FIFO* fifo,
-                  void* buffer,
+                  uint8_t* buffer,
                   uint32_t length   );
 
 uint32_t FIFO_Get(struct FIFO* fifo,
-                  void* buffer,
+                  uint8_t* buffer,
                   uint32_t length   );
 
 

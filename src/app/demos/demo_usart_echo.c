@@ -4,6 +4,9 @@
 
 #include "launcher.h"
 #include "hal/hal_usart.h"
+#include "service/fifo.h"
+
+FIFO_DEFINE(USART_FIFO, 0xFF);
 
 
 
@@ -23,11 +26,9 @@ APP_TASK_DEFINE(USART_Echo,      /*name name##_TCB*/
 
 
 
-
-
 void onRecvByteDone(uint8_t byte)
 {
-
+    FIFO_Put(&USART_FIFO, &byte, 1);
 }
 
 
