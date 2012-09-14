@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<flash_device>
+  <exe>$PROJ_DIR$\Debug\Exe\FlashLoader_SDRAM.out</exe>
+  <page>256</page>
+  <block>1 0xA0000000</block>
+  <flash_base>0x10000000</flash_base>
+  <macro>$PROJ_DIR$\flashloader\FlashLPC1788_SDRAM.mac</macro>
+  <aggregate>1</aggregate>
+</flash_device>
