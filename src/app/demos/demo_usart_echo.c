@@ -54,6 +54,7 @@ void USART_Echo(void *p_arg)
 {
     OS_ERR  err;
     uint32_t recv_length;
+    (void)p_arg;
 
     USART_SetRecvByteDoneISR(onRecvByteDone);
     USART_SetRecvTimeoutISR(onRecvTimeout);

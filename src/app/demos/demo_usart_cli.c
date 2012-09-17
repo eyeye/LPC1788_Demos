@@ -4,12 +4,16 @@
  *  Created on: 2012-9-17
  *      Author: YangZhiyong
  */
+
+
 #include "launcher.h"
+#include <stdint.h>
+#include "hal/hal_usart.h"
 
 void USART_CLI(void *p_arg);
 
-APP_TASK_DEFINE(USART_CLI,     /*name name##_TCB*/
-                USART_CLI,     /*p_task*/
+APP_TASK_DEFINE(USART_CLI,      /*name name##_TCB*/
+                USART_CLI,      /*p_task*/
                 0,              /*p_arg*/
                 4,              /*prio*/
                 128,            /*stk_size_32*/
@@ -21,25 +25,25 @@ APP_TASK_DEFINE(USART_CLI,     /*name name##_TCB*/
 
 
 
-void onRecvByteDone(uint8_t byte)
+static void onRecvByteDone(uint8_t byte)
 {
 //    FIFO_Put(&USART_FIFO, &byte, 1);
-    FIFO_PutByte(&USART_FIFO, byte);
+//    FIFO_PutByte(&USART_FIFO, byte);
 }
 
 
 
-void onRecvTimeout(void)
+static void onRecvTimeout(void)
 {
     OS_ERR  err;
-    OSTaskSemPost(&USART_Echo_TCB,
+    OSTaskSemPost(&USART_CLI_TCB,
                   OS_OPT_POST_NONE,
                   &err);
 }
 
 
 
-void onSendDone(void)
+static void onSendDone(void)
 {
 
 }
@@ -51,9 +55,9 @@ void USART_CLI(void *p_arg)
 {
     (void)p_arg;
 
-    USART_SetRecvByteDoneISR(onRecvByteDone);
-    USART_SetRecvTimeoutISR(onRecvTimeout);
-    USART_SetSendDoneISR(onSendDone);
+//    USART_SetRecvByteDoneISR(onRecvByteDone);
+//    USART_SetRecvTimeoutISR(onRecvTimeout);
+//    USART_SetSendDoneISR(onSendDone);
 
 
 
