@@ -205,6 +205,8 @@ void USART_Init(void)
     UART_IntConfig(USART_ID, UART_INTCFG_RBR, ENABLE);
     /* Enable UART line status interrupt */
     UART_IntConfig(USART_ID, UART_INTCFG_RLS, ENABLE);
+    /* Enable UART THR interrupt */
+    UART_IntConfig(USART_ID, UART_INTCFG_THRE, ENABLE);
 
     /* preemption = 1, sub-priority = 1 */
     NVIC_SetPriority(USART_IRQ, ((0x01<<3)|0x01));

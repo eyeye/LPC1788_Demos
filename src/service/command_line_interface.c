@@ -16,7 +16,7 @@
 
 
 
-char Buffer[COMMAND_BUFFER_SIZE];
+static char Buffer[COMMAND_BUFFER_SIZE];
 
 uint8_t Buffer_Index = 0;
 

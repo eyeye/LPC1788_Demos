@@ -11,17 +11,46 @@
 #include <string.h>
 
 
-inline uint32_t empty_space(struct FIFO* fifo)
-{
-    return fifo->size - (fifo->write_idx - fifo->read_idx);
-}
+//inline uint32_t empty_space(struct FIFO* fifo)
+//{
+//    return fifo->size - (fifo->write_idx - fifo->read_idx);
+//}
+//
+//
+//inline uint32_t fill_space(struct FIFO* fifo)
+//{
+//    return fifo->write_idx - fifo->read_idx;
+//}
 
 
-inline uint32_t fill_space(struct FIFO* fifo)
+
+uint32_t FIFO_Length(struct FIFO* fifo)
 {
     return fifo->write_idx - fifo->read_idx;
 }
 
+
+
+uint32_t FIFO_PutByte(struct FIFO* fifo, uint8_t byte)
+{
+    uint32_t empty;
+    uint32_t write_offset;
+
+
+    empty = fifo->size - (fifo->write_idx - fifo->read_idx);
+
+    if( empty == 0 )
+    {
+        return 0;
+    }
+
+    write_offset = fifo->write_idx & (fifo->size - 1);
+    fifo->buffer[write_offset] = byte;
+
+    fifo->write_idx ++;
+
+    return 1;
+}
 
 
 
