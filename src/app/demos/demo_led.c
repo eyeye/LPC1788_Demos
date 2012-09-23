@@ -5,7 +5,7 @@
  *      Author: YangZhiyong
  */
 
-#include "hal/hal_led.h"
+#include "hal_led.h"
 
 
 void demo_led(void)

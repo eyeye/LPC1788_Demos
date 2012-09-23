@@ -47,7 +47,7 @@
 /* pbuf buffers in pool. In zero-copy mode, these buffers are
    located in peripheral RAM. In copied mode, they are located in
    internal IRAM */
-#define PBUF_POOL_SIZE                  16
+#define PBUF_POOL_SIZE                  6
 
  /* No padding needed */
 #define ETH_PAD_SIZE                    0
@@ -71,7 +71,7 @@
 #define LWIP_PLATFORM_BYTESWAP			0
 
 /* Non-static memory, used with DMA pool */
-#define MEM_SIZE						(16*1024)
+#define MEM_SIZE						(8*1024)
 
 /* Raw interface not needed */
 #define LWIP_RAW                        1
@@ -87,7 +87,7 @@
 
 /* MSS should match the hardware packet size */
 #define TCP_MSS                         1460
-#define TCP_SND_BUF						(8 * TCP_MSS)
+#define TCP_SND_BUF						(2 * TCP_MSS)
 
 #if NO_SYS
 #define LWIP_SOCKET                     0
@@ -109,10 +109,9 @@
    building the code to use debug. */
 #define LWIP_DEBUG
 
-
-#define TCP_DEBUG                       LWIP_DBG_OFF
-#define ETHARP_DEBUG                    LWIP_DBG_OFF
-#define PBUF_DEBUG                      LWIP_DBG_OFF
+#define TCP_DEBUG                       LWIP_DBG_ON
+#define ETHARP_DEBUG                    LWIP_DBG_ON
+#define PBUF_DEBUG                      LWIP_DBG_ON
 #define IP_DEBUG                        LWIP_DBG_ON
 #define TCPIP_DEBUG                     LWIP_DBG_OFF
 #define DHCP_DEBUG                      LWIP_DBG_OFF

@@ -67,4 +67,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>External files/core_cm3.h</name>
+			<type>1</type>
+			<location>E:/Program Files/IAR Systems/ARM 630/arm/CMSIS/Include/core_cm3.h</location>
+		</link>
+	</linkedResources>
 </projectDescription>

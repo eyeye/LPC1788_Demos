@@ -52,6 +52,7 @@ place in PER_RAM_bank0_first_region { section USB_RAM };
 
 place in SDRAM_region     { section SDRAM };
 
-
+place in PER_RAM_bank0_first_region  { readwrite object lpc17_emac.o, readwrite object mem.o,
+                        readwrite object memp.o };
 
 

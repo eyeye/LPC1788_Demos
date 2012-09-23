@@ -10,10 +10,9 @@
 #include "launcher.h"
 #include "usb.h"
 #include "lpc_types.h"
-#include <bsp.h>
 #include "usbhw.h"
-#include "hal/hal_led.h"
-#include "hal/hal_extbus.h"
+#include "hal_led.h"
+#include "hal_extbus.h"
 
 
 static volatile uint32_t USB_PowerStatus;

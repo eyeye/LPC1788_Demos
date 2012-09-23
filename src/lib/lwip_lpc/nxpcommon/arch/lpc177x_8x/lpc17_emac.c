@@ -38,6 +38,7 @@
 #include "lpc17_emac.h"
 #include "lpc_emac_config.h"
 #include "lpc_phy.h"
+#include "lpc_arch.h"
 
 #ifndef LPC_EMAC_RMII
 #error LPC_EMAC_RMII is not defined!
@@ -541,7 +542,8 @@ static void lpc_tx_reclaim_st(struct lpc_enetdata *lpc_enetif, u32_t cidx)
 		}
 
 #if NO_SYS == 0
-		xSemaphoreGive(lpc_enetif->xTXDCountSem);
+//		xSemaphoreGive(lpc_enetif->xTXDCountSem);
+		sys_sem_signal(&lpc_enetdata.xTXDCountSem);
 #endif
 		lpc_enetif->lpc_last_tx_idx++;
 		if (lpc_enetif->lpc_last_tx_idx >= LPC_NUM_BUFF_TXDESCS)
@@ -661,7 +663,8 @@ static err_t lpc_low_level_output(struct netif *netif, struct pbuf *p)
 	/* THIS WILL BLOCK UNTIL THERE ARE ENOUGH DESCRIPTORS AVAILABLE */
 	while (dn > lpc_tx_ready(netif))
 #if NO_SYS == 0
-		xSemaphoreTake(lpc_enetif->xTXDCountSem, 0);
+//		xSemaphoreTake(lpc_enetif->xTXDCountSem, 0);
+	sys_arch_sem_wait(&lpc_enetif->xTXDCountSem, 0);
 #else
 		msDelay(1);
 #endif

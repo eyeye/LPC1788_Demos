@@ -13,6 +13,9 @@ define symbol __ICFEDIT_size_cstack__ = 0x400;
 define symbol __ICFEDIT_size_heap__   = 0x200;
 /**** End of ICF editor section. ###ICF###*/
 
+
+define symbol __SDRAM_size__ = (3*1024*1024);
+
 define memory mem with size = 4G;
 define region ROM_region   = mem:[from __ICFEDIT_region_ROM_start__   to __ICFEDIT_region_ROM_end__];
 define region RAM_region   = mem:[from __ICFEDIT_region_RAM_start__   to __ICFEDIT_region_RAM_end__];
@@ -26,6 +29,10 @@ define region PER_RAM_bank0_second_region = mem:[from _PER_RAM_bank0_second_star
 define symbol _PER_RAM_bank1_start__ = 0x20004000;
 define symbol _PER_RAM_bank1_end__ = 0x20007FFF;
 define region PER_RAM_bank1_region = mem:[from _PER_RAM_bank1_start__ to _PER_RAM_bank1_end__];
+
+
+define region PRAM_region  = mem:[from 0x20000000   to 0x20007FFF];
+
 
 define symbol _AHB_RAM_start__  = 0x20080000;
 define symbol _AHB_RAM_end__    = 0x200BFFFF;
@@ -44,6 +51,14 @@ place in RAM_region     { readwrite,
                           block CSTACK, block HEAP };
 place in PER_RAM_bank0_first_region { section USB_RAM };
 
+define symbol _SDRAM_start__ = 0xA0000000;
+define symbol _SDRAM_end__   = (0xA0000000 + __SDRAM_size__);
+define region SDRAM_region = mem:[from _SDRAM_start__ to _SDRAM_end__];
 
+
+place in SDRAM_region     { section SDRAM };
+
+place in PRAM_region  { readwrite object lpc17_emac.o, readwrite object mem.o,
+                        readwrite object memp.o };
 
 

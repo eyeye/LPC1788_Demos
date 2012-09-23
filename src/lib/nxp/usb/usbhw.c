@@ -34,7 +34,6 @@
 #include "usbcore.h"
 #include "usbuser.h"
 #include "lpc_types.h"
-#include "bsp.h"
 
 
 /** @addtogroup USBDEV_MscUsbHw

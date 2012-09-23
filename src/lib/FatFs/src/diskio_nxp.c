@@ -28,7 +28,6 @@
 #include "lpc177x_8x_mci.h"
 #include "lpc177x_8x_gpdma.h"
 #include "debug_frmwrk.h"
-#include "bsp.h"
 #include "diskio.h"
 
 #include "diskio_nxp.h"

@@ -8,7 +8,7 @@
 
 #include "launcher.h"
 #include <stdint.h>
-#include "hal/hal_usart.h"
+#include "hal_usart.h"
 
 void USART_CLI(void *p_arg);
 

@@ -3,7 +3,7 @@
 
 
 #include "launcher.h"
-#include "hal/hal_usart.h"
+#include "hal_usart.h"
 #include "service/fifo.h"
 
 uint8_t recv_buffer[0x100];

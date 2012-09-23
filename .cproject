@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="iar.arm.toolchain.project.exe.configuration.debug.v5.4.0.1945113034">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="iar.arm.toolchain.project.exe.configuration.debug.v5.4.0.1945113034" moduleId="org.eclipse.cdt.core.settings" name="Debug">
@@ -49,8 +47,10 @@
 								<option id="iar.arm.toolchain.compiler.option.cpuMode.v5.4.0.2053517735" name="Processor mode:" superClass="iar.arm.toolchain.compiler.option.cpuMode.v5.4.0" value="iar.arm.toolchain.compiler.option.cpuMode.thumb.v5.4.0" valueType="enumerated"/>
 								<option id="iar.arm.toolchain.compiler.option.incPaths.v5.4.0.1672053720" name="Additional include directories" superClass="iar.arm.toolchain.compiler.option.incPaths.v5.4.0" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp/usb}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/hal/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/config}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp/usb}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp/BoardSupport}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp/Drivers/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/lib/nxp/LPC177x_8x/Include}&quot;"/>
@@ -78,6 +78,7 @@
 								</option>
 								<option id="iar.arm.toolchain.compiler.option.enableVLA.v6.1.0.180350738" name="Allow VLA" superClass="iar.arm.toolchain.compiler.option.enableVLA.v6.1.0" value="true" valueType="boolean"/>
 								<option id="iar.arm.toolchain.compiler.option.cppInlineSemantics.v6.1.0.641923450" name="Use C++ inline semantics" superClass="iar.arm.toolchain.compiler.option.cppInlineSemantics.v6.1.0" value="true" valueType="boolean"/>
+								<option id="iar.arm.toolchain.compiler.option.preincludeFile.v5.4.0.1125157968" name="Preinclude file:" superClass="iar.arm.toolchain.compiler.option.preincludeFile.v5.4.0" value="${workspace_loc:/${ProjName}/src/lib/nxp/LPC177x_8x/Include/LPC177x_8x.h}" valueType="string"/>
 								<inputType id="iar.arm.toolchain.compiler.inputType.v5.4.1.700392001" name="IAR C/C++ Compiler Input Type" superClass="iar.arm.toolchain.compiler.inputType.v5.4.1"/>
 							</tool>
 							<tool id="iar.arm.toolchain.assembler.v5.4.0.1772757037" name="IAR Assembler for ARM" superClass="iar.arm.toolchain.assembler.v5.4.0">
@@ -85,7 +86,7 @@
 								<inputType id="iar.arm.toolchain.assembler.inputType.asmFile.v5.4.0.1531054300" name="IAR Assembler input type for ARM (asm, s)" superClass="iar.arm.toolchain.assembler.inputType.asmFile.v5.4.0"/>
 							</tool>
 							<tool id="iar.arm.toolchain.linker.v5.4.0.318694821" name="IAR Linker for ARM" superClass="iar.arm.toolchain.linker.v5.4.0">
-								<option id="iar.arm.toolchain.linker.option.icfFile.v5.4.0.1895942016" name="Linker configuration file:" superClass="iar.arm.toolchain.linker.option.icfFile.v5.4.0" value="${ProjDirPath}/src/config/iram.icf" valueType="string"/>
+								<option id="iar.arm.toolchain.linker.option.icfFile.v5.4.0.1895942016" name="Linker configuration file:" superClass="iar.arm.toolchain.linker.option.icfFile.v5.4.0" value="${ProjDirPath}/src/config/irom.icf" valueType="string"/>
 								<option id="iar.arm.toolchain.linker.option.devicePostProcess.v5.5.2.155609778" name="IElfToolPostProcess" superClass="iar.arm.toolchain.linker.option.devicePostProcess.v5.5.2" value="--checksum __vector_table+0x1c:4,sum32:2;__vector_table-__vector_table+0x1B" valueType="string"/>
 								<option id="iar.arm.toolchain.linker.option.performVFE.v6.2.2.1660237396" name="Perform C++ Virtual Function Elimination" superClass="iar.arm.toolchain.linker.option.performVFE.v6.2.2"/>
 								<option id="iar.arm.toolchain.linker.option.forceVFE.v6.2.2.141294370" name="Even if some modules are missing VFE information" superClass="iar.arm.toolchain.linker.option.forceVFE.v6.2.2"/>
@@ -149,7 +150,7 @@
 					</fileInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="lib/FatFs/src/option/cc950.c|lib/FatFs/src/option/cc949.c|lib/FatFs/src/option/cc936.c|lib/FatFs/src/option/cc932.c|lib/nxp/LPC177x_8x/Source/Templates|lib/lwip_lpc/lwip-1.4.0/src/core/sys.c|lib/lwip_lpc/lwip-1.4.0/src/core/ipv6" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="uCOS_III/uC-BSP|lib/FatFs/src/option/cc950.c|lib/FatFs/src/option/cc949.c|lib/FatFs/src/option/cc936.c|lib/FatFs/src/option/cc932.c|lib/nxp/LPC177x_8x/Source/Templates|lib/lwip_lpc/lwip-1.4.0/src/core/sys.c|lib/lwip_lpc/lwip-1.4.0/src/core/ipv6" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -205,7 +206,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="lib/FatFs/src/option/cc950.c|lib/FatFs/src/option/cc949.c|lib/FatFs/src/option/cc936.c|lib/FatFs/src/option/cc932.c|lib/nxp/LPC177x_8x/Source/Templates" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="uCOS_III/uC-BSP|lib/FatFs/src/option/cc950.c|lib/FatFs/src/option/cc949.c|lib/FatFs/src/option/cc936.c|lib/FatFs/src/option/cc932.c|lib/nxp/LPC177x_8x/Source/Templates" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

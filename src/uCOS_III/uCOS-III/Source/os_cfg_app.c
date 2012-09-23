@@ -298,5 +298,5 @@ void  OSCfg_Init (void)
     p_temp = (void const *)&OSCfg_TmrWheelSize;
     p_temp = (void const *)&OSCfg_TmrWheelSizeRAM;
 #endif
-    p_temp = p_temp;
+    (void)p_temp;
 }

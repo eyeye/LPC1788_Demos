@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#include "hal/hal_extbus.h"
+#include "hal_extbus.h"
 
 
 #define SDRAM_DISK_ADDRESS          (SDRAM_BASE_ADDR)

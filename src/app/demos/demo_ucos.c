@@ -6,9 +6,8 @@
  */
 
 #include <os.h>
-#include <bsp.h>
 #include "launcher.h"
-#include "hal/hal_led.h"
+#include "hal_led.h"
 
 /*
 *********************************************************************************************************
@@ -36,7 +35,7 @@ void demo_ucos(void)
     OS_ERR  err;
 
 //    SystemInit();
-    BSP_IntDisAll();                                            /* Disable all interrupts.                              */
+//    BSP_IntDisAll();                                            /* Disable all interrupts.                              */
     OSInit(&err);                                               /* Init uC/OS-III.                                      */
 
     OSTaskCreate((OS_TCB     *)&AppTaskStart_TCB,               /* Create the start task                                */
@@ -82,20 +81,20 @@ static  void  AppTaskStart (void *p_arg)
 
    (void)p_arg;
 
-    BSP_Init();                                                       /* Initialize BSP functions                          */
+//    BSP_Init();                                                       /* Initialize BSP functions                          */
     CPU_Init();                                                       /* Initialize the uC/CPU services                    */
 
-    AppCPU_ClkFreq_Hz = BSP_CPU_ClkFreq();                            /* Determine SysTick reference freq.                 */
-    cnts          = AppCPU_ClkFreq_Hz / (CPU_INT32U)OSCfg_TickRate_Hz;/* Determine nbr SysTick increments                  */
-    OS_CPU_SysTickInit(cnts);                                         /* Init uC/OS periodic time src (SysTick).           */
+//    AppCPU_ClkFreq_Hz = BSP_CPU_ClkFreq();                            /* Determine SysTick reference freq.                 */
+//    cnts          = AppCPU_ClkFreq_Hz / (CPU_INT32U)OSCfg_TickRate_Hz;/* Determine nbr SysTick increments                  */
+    OS_CPU_SysTickInit(80000000/1000);                                         /* Init uC/OS periodic time src (SysTick).           */
 
-#if OS_CFG_STAT_TASK_EN > 0u
-    OSStatTaskCPUUsageInit(&err);                                     /* Compute CPU capacity with no task running         */
-#endif
-
-#ifdef  CPU_CFG_INT_DIS_MEAS_EN
-    CPU_IntDisMeasMaxCurReset();
-#endif
+//#if OS_CFG_STAT_TASK_EN > 0u
+//    OSStatTaskCPUUsageInit(&err);                                     /* Compute CPU capacity with no task running         */
+//#endif
+//
+//#ifdef  CPU_CFG_INT_DIS_MEAS_EN
+//    CPU_IntDisMeasMaxCurReset();
+//#endif
 
     Launcher_Exec();
 
@@ -240,6 +239,4 @@ void LED_Task3(void *p_arg)
 
 
 /////////////////////////////////////////////////////////////////////
-
-
 

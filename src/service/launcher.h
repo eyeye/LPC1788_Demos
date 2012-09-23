@@ -92,7 +92,6 @@ struct OSSemCreate_Arg
                 };\
 
 
-
 #define APP_FLAG_DEFINE()
 
 
