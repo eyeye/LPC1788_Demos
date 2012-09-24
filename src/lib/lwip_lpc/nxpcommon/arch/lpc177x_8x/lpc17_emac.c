@@ -130,7 +130,13 @@ struct lpc_enetdata {
 
 /** \brief  LPC EMAC driver work data
  */
-ALIGNED(8) struct lpc_enetdata lpc_enetdata;
+
+#if defined (__IAR_SYSTEMS_ICC__)
+#pragma data_alignment=8
+#else
+ALIGNED(8)
+#endif
+struct lpc_enetdata lpc_enetdata;
 
 /* Write a value via the MII link (non-blocking) */
 void lpc_mii_write_noblock(u32_t PhyReg, u32_t Value)

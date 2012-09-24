@@ -115,7 +115,7 @@
 #define IP_DEBUG                        LWIP_DBG_ON
 #define TCPIP_DEBUG                     LWIP_DBG_OFF
 #define DHCP_DEBUG                      LWIP_DBG_OFF
-#define UDP_DEBUG                       LWIP_DBG_OFF
+#define UDP_DEBUG                       LWIP_DBG_ON
 
 /* This define is custom for the LPC EMAC driver. Enabled it to
    get debug messages for the driver. */
