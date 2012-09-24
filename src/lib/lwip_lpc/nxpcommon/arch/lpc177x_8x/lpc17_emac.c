@@ -742,6 +742,8 @@ void ENET_IRQHandler(void)
 	/* Interrupts are of 2 groups - transmit or receive. Based on the
 	   interrupt, kick off the receive or transmit (cleanup) task */
 
+	SYS_EnterInt();
+
 	/* Get pending interrupts */
 	ints = LPC_EMAC->IntStatus;
 
@@ -765,6 +767,7 @@ void ENET_IRQHandler(void)
 	LPC_EMAC->IntClear = ints;
 
 	/* Context switch needed? */
+	SYS_ExitInt();
 //	portEND_SWITCHING_ISR( xRecTaskWoken || XTXTaskWoken );
 #endif
 }

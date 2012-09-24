@@ -48,8 +48,8 @@
  */
 
 #if USB_POWER_EVENT
-//void USB_Power_Event (uint32_t  power) {
-//}
+void USB_Power_Event (uint32_t  power) {
+}
 #endif
 
 

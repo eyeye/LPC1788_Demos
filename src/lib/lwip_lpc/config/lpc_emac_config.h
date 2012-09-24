@@ -68,11 +68,11 @@ extern "C"
 
 /** \brief  Defines the number of descriptors used for RX
  */
-#define LPC_NUM_BUFF_RXDESCS 8
+#define LPC_NUM_BUFF_RXDESCS 3
 
 /** \brief  Defines the number of descriptors used for TX
  */
-#define LPC_NUM_BUFF_TXDESCS 8
+#define LPC_NUM_BUFF_TXDESCS 3
 
 /** \brief  Enables slow speed memory buffering
  *          Enable this define if you expect to transfer packets directly

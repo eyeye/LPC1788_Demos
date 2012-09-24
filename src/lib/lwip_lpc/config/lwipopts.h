@@ -47,7 +47,7 @@
 /* pbuf buffers in pool. In zero-copy mode, these buffers are
    located in peripheral RAM. In copied mode, they are located in
    internal IRAM */
-#define PBUF_POOL_SIZE                  6
+#define PBUF_POOL_SIZE                  8
 
  /* No padding needed */
 #define ETH_PAD_SIZE                    0
@@ -71,10 +71,10 @@
 #define LWIP_PLATFORM_BYTESWAP			0
 
 /* Non-static memory, used with DMA pool */
-#define MEM_SIZE						(8*1024)
+#define MEM_SIZE						(10*1024)
 
 /* Raw interface not needed */
-#define LWIP_RAW                        1
+#define LWIP_RAW                        0
 
 /* DHCP is ok, UDP is required with DHCP */
 #define LWIP_DHCP                       0

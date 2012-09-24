@@ -50,7 +50,7 @@
 /*----------------------------------------------------------------------------*/
 /*                      DEFINITIONS                                           */
 /*----------------------------------------------------------------------------*/
-#define LWIP_ARCH_TICK_PER_MS       1000/OS_CFG_TICK_RATE_HZ
+#define LWIP_ARCH_TICK_PER_MS       (1000/OS_CFG_TICK_RATE_HZ)
 
 
 #if NO_SYS

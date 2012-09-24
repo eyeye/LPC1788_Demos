@@ -8,6 +8,7 @@
 #include <os.h>
 #include "launcher.h"
 #include "hal_led.h"
+#include "system_LPC177x_8x.h"
 
 /*
 *********************************************************************************************************
@@ -86,7 +87,7 @@ static  void  AppTaskStart (void *p_arg)
 
 //    AppCPU_ClkFreq_Hz = BSP_CPU_ClkFreq();                            /* Determine SysTick reference freq.                 */
 //    cnts          = AppCPU_ClkFreq_Hz / (CPU_INT32U)OSCfg_TickRate_Hz;/* Determine nbr SysTick increments                  */
-    OS_CPU_SysTickInit(80000000/1000);                                         /* Init uC/OS periodic time src (SysTick).           */
+    OS_CPU_SysTickInit(SystemCoreClock/OSCfg_TickRate_Hz);                                        /* Init uC/OS periodic time src (SysTick).           */
 
 //#if OS_CFG_STAT_TASK_EN > 0u
 //    OSStatTaskCPUUsageInit(&err);                                     /* Compute CPU capacity with no task running         */

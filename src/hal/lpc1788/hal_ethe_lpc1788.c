@@ -10,6 +10,7 @@
 #include "lpc177x_8x_clkpwr.h"
 #include "lpc177x_8x_gpio.h"
 #include "lpc177x_8x_pinsel.h"
+#include "lpc17_emac.h"
 
 
 void ETHE_Init(void)
@@ -49,6 +50,8 @@ void ETHE_Init(void)
     for( int i = 0; i < 10000; i++ );
     GPIO_SetValue(4, 1<<15);
 
+//    struct netif lpc_netif;
+//    lpc_enetif_init(&lpc_netif);
 }
 
 

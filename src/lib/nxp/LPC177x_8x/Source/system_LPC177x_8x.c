@@ -5,15 +5,15 @@
 * @brief	CMSIS Cortex-M3 Device Peripheral Access Layer Source File
 *          	for the NXP LPC177x_8x Device Series
 *
-*			ARM Limited (ARM) is supplying this software for use with
-*			Cortex-M processor based microcontrollers.  This file can be
-*			freely distributed within development tools that are supporting
+*			ARM Limited (ARM) is supplying this software for use with 
+*			Cortex-M processor based microcontrollers.  This file can be 
+*			freely distributed within development tools that are supporting 
 *			such ARM based processors.
 *
 * @version	1.0
 * @date		02. June. 2011
 * @author	NXP MCU SW Application Team
-*
+* 
 * Copyright(C) 2011, NXP Semiconductor
 * All rights reserved.
 *
@@ -43,7 +43,7 @@
 /** @addtogroup LPC177x_8x_System
  * @{
  */
-
+ 
 #define __CLK_DIV(x,y) (((y) == 0) ? 0: (x)/(y))
 
 /*
@@ -227,7 +227,7 @@
 #define PLL1CFG_Val           0x00000025
 #define CCLKSEL_Val           0x00000101
 #define USBCLKSEL_Val         0x00000201
-#define EMCCLKSEL_Val         0x00000000
+#define EMCCLKSEL_Val         0x00000001
 #define PCLKSEL_Val           0x00000002
 #define PCONP_Val             0xFFFEFFFF
 #define CLKOUTCFG_Val         0x00000100
@@ -302,14 +302,15 @@
 
 /* Flash Accelerator Configuration -------------------------------------------*/
 #if (CHECK_RSVD((FLASHCFG_Val), ~0x0000F000))
-   #warning "FLASHCFG: Invalid values of reserved bits!"
+   #error "FLASHCFG: Invalid values of reserved bits!"
 #endif
 
 
 /*----------------------------------------------------------------------------
   DEFINES
  *----------------------------------------------------------------------------*/
-
+/* pll_out_clk = F_cco / (2 × P)
+   F_cco = pll_in_clk × M × 2 × P */
 #define __M                   ((PLL0CFG_Val & 0x1F) + 1)
 #define __PLL0_CLK(__F_IN)    (__F_IN * __M)
 #define __CCLK_DIV            (CCLKSEL_Val & 0x1F)
@@ -395,7 +396,7 @@ void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
       }
       else {
           SystemCoreClock = __CLK_DIV(OSC_CLK , (LPC_SC->CCLKSEL & 0x1F));
-          PeripheralClock = __CLK_DIV(OSC_CLK , (LPC_SC->PCLKSEL & 0x1F));
+          PeripheralClock = __CLK_DIV(OSC_CLK , (LPC_SC->PCLKSEL & 0x1F));	  	
           EMCClock        = (SystemCoreClock / ((LPC_SC->EMCCLKSEL & 0x01)+1));
       }
     }
@@ -479,11 +480,6 @@ void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
  * @brief  Setup the microcontroller system.
  *         Initialize the System.
  */
-
-
-//#define __RAM_MODE__
-#pragma section=".intvec"
-
 void SystemInit (void)
 {
 #if (CLOCK_SETUP)                       /* Clock Setup                        */
@@ -523,15 +519,12 @@ void SystemInit (void)
 #if (FLASH_SETUP == 1)                  /* Flash Accelerator Setup            */
   LPC_SC->FLASHCFG  = FLASHCFG_Val|0x03A;
 #endif
-//#ifdef  __RAM_MODE__
-//  SCB->VTOR  = 0x10000000 & 0x3FFFFF80;
-//#else
-//  SCB->VTOR  = 0x00000000 & 0x3FFFFF80;
-//#endif
-
-  SCB->VTOR = (uint32_t)__section_begin(".intvec");
-
-  SystemCoreClockUpdate();
+#ifdef  __RAM_MODE__
+  SCB->VTOR  = 0x10000000 & 0x3FFFFF80;
+#else
+  SCB->VTOR  = 0x00000000 & 0x3FFFFF80;
+#endif
+  SystemCoreClockUpdate(); 
 }
 
 /**

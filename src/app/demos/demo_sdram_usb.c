@@ -19,16 +19,16 @@ static volatile uint32_t USB_PowerStatus;
 
 void USB_SDRAM_Disk(void *p_arg);
 
-APP_TASK_DEFINE(USB_SDRAM,      /*name name##_TCB*/
-                USB_SDRAM_Disk, /*p_task*/
-                0,              /*p_arg*/
-                4,              /*prio*/
-                128,            /*stk_size_32*/
-                0,              /*q_size*/
-                0,              /*time_quanta*/
-                0,              /*p_ext*/
-                (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR) /*opt*/
-)
+//APP_TASK_DEFINE(USB_SDRAM,      /*name name##_TCB*/
+//                USB_SDRAM_Disk, /*p_task*/
+//                0,              /*p_arg*/
+//                4,              /*prio*/
+//                128,            /*stk_size_32*/
+//                0,              /*q_size*/
+//                0,              /*time_quanta*/
+//                0,              /*p_ext*/
+//                (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR) /*opt*/
+//)
 
 
 
@@ -129,13 +129,13 @@ void USB_SDRAM_Disk(void *p_arg)
 
 
 
-void USB_Power_Event (uint32_t  power)
-{
-    OS_ERR error;
-
-    OSTaskSemPost (&USB_SDRAM_TCB, OS_OPT_POST_NO_SCHED, &error);
-    USB_PowerStatus = power;
-}
+//void USB_Power_Event (uint32_t  power)
+//{
+//    OS_ERR error;
+//
+//    OSTaskSemPost (&USB_SDRAM_TCB, OS_OPT_POST_NO_SCHED, &error);
+//    USB_PowerStatus = power;
+//}
 
 
 

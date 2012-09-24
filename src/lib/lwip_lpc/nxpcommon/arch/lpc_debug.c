@@ -51,6 +51,7 @@ void assert_printf(char *msg, int line, char *file)
 //			msDelay(100);
 //			led_set(1);
 //			msDelay(100);
+		    sys_msleep(200);
 		}
 	}
 }
