@@ -149,40 +149,16 @@ void UART0_IRQHandler(void)
 
 void USART_Init(void)
 {
-    // UART Configuration structure variable
     UART_CFG_Type UARTConfigStruct;
-    // UART FIFO configuration Struct variable
     UART_FIFO_CFG_Type UARTFIFOConfigStruct;
 
-
-    /*
-     * Initialize UART0 pin connect
-     * P0.2: U0_TXD
-     * P0.3: U0_RXD
-     */
     PINSEL_ConfigPin(0,2,1);
     PINSEL_ConfigPin(0,3,1);
 
-
-    /* Initialize UART Configuration parameter structure to default state:
-     * Baudrate = 115200 bps
-     * 8 data bit
-     * 1 Stop bit
-     * None parity
-     */
     UART_ConfigStructInit(&UARTConfigStruct);
 
-    // Initialize UART0 peripheral with given to corresponding parameter
     UART_Init(USART_ID, &UARTConfigStruct);
 
-
-    /* Initialize FIFOConfigStruct to default state:
-     *              - FIFO_DMAMode = DISABLE
-     *              - FIFO_Level = UART_FIFO_TRGLEV2, 8 character
-     *              - FIFO_ResetRxBuf = ENABLE
-     *              - FIFO_ResetTxBuf = ENABLE
-     *              - FIFO_State = ENABLE
-     */
     UART_FIFOConfigStructInit(&UARTFIFOConfigStruct);
 #if     USART_FIFO_LEVEL == 1
     UARTFIFOConfigStruct.FIFO_Level = UART_FIFO_TRGLEV0;
@@ -194,24 +170,16 @@ void USART_Init(void)
     UARTFIFOConfigStruct.FIFO_Level = UART_FIFO_TRGLEV3;
 #endif
 
-    // Initialize FIFO for UART0 peripheral
     UART_FIFOConfig(USART_ID, &UARTFIFOConfigStruct);
 
 
-    // Enable UART Transmit
     UART_TxCmd(USART_ID, ENABLE);
-
-    /* Enable UART Rx interrupt */
     UART_IntConfig(USART_ID, UART_INTCFG_RBR, ENABLE);
-    /* Enable UART line status interrupt */
     UART_IntConfig(USART_ID, UART_INTCFG_RLS, ENABLE);
-    /* Enable UART THR interrupt */
     UART_IntConfig(USART_ID, UART_INTCFG_THRE, ENABLE);
 
-    /* preemption = 1, sub-priority = 1 */
     NVIC_SetPriority(USART_IRQ, ((0x01<<3)|0x01));
 
-    /* Enable Interrupt for UART0 channel */
     NVIC_EnableIRQ(USART_IRQ);
 }
 

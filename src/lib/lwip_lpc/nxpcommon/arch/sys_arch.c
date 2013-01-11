@@ -368,7 +368,7 @@ void sys_init(void)
         OS_TaskInitTCB(&LwIP_Task_TCB[i]);
     }
 
-
+__WFI();
     /* init mem used by sys_mbox_t, use ucosII functions */
     OSMemCreate(&StackMem,"LWIP TASK STK",(void*)LwIP_Task_Stk, LWIP_TASK_MAX, LWIP_STK_SIZE*sizeof(CPU_STK), &ucErr);
     LWIP_ASSERT( "sys_init: failed OSMemCreate STK", ucErr == OS_ERR_NONE );
